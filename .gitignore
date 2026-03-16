@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-test02.py
+test_demo02.py
 model_zoo/team07_I2WM_JNU/*pth
 datasets
 demo.sh
