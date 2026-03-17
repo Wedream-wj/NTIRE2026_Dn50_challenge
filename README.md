@@ -4,9 +4,24 @@
 
 The IW2M & JNU team's code in the NTIRE 2026 Image Denoising Challenge (noise level=50) track. ——team07
 
+## Dependence
+
+```bash
+# pip install torch==2.0.1+cu117 --index-url https://download.pytorch.org/whl/cu117
+torch==2.0.1
+opencv-python
+torchvision==0.15.1
+importlib_metadata
+numpy==1.26.3
+timm==1.0.10
+matplotlib
+```
+
+
+
 ## Setup
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
@@ -30,7 +45,7 @@ CUDA_VISIBLE_DEVICES=7 python test_demo02.py --model_id 7 \
 --data_dir datasets \
 --save_dir results
 
-# NVDIA H200推理大约需要0.5~1h左右
+# NVIDIA H200推理大约需要0.5~1h左右
 ```
 
 
