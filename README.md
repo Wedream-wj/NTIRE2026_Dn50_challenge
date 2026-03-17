@@ -1,43 +1,40 @@
 # [NTIRE 2026 Challenge on Image Denoising](https://cvlai.net/ntire/2026/) @ [CVPR 2026](https://cvpr.thecvf.com/)
 
-This is an example of adding noise and simple baseline model.
 
-## How to add noise to images?
-`
-python add_noise.py
-`
 
-## How to Install Environment
+The IW2M & JNU team's code in the NTIRE 2026 Image Denoising Challenge (noise level=50) track. ——team07
 
-```bash
-# Install
+## Setup
+
+```
 pip install -r requirements.txt
 ```
 
-## How to test the baseline model?
 
 
-Select the model you would like to test from [`run.sh`](./run.sh)
-    ```bash
-    CUDA_VISIBLE_DEVICES=0 python test_demo.py --data_dir [path to your data dir] --save_dir [path to your save dir] --model_id 0
-    ```
-    - Be sure the change the directories `--data_dir` and `--save_dir`.
+## Download Weights
 
-## How to add your model to this baseline?
-1. Register your team in the [Google Spreadsheet](https://docs.google.com/spreadsheets/d/1vinqY0JUNVHb4v0sItOnsmiUmx8JkJro1Sk4gIl-aF8/edit?usp=sharing) and get your team ID.
-2. Put your the code of your model in `./models/[Your_Team_ID]_[Your_Model_Name].py`
-   - Please add **only one** file in the folder `./models`. **Please do not add other submodules**.
-   - Please zero pad [Your_Team_ID] into two digits: e.g. 00, 01, 02 
-3. Put the pretrained model in `./model_zoo/[Your_Team_ID]_[Your_Model_Name].[pth or pt or ckpt]`
-   - Please zero pad [Your_Team_ID] into two digits: e.g. 00, 01, 02  
-4. Add your model to the model loader `./test_demo/select_model` as follows:
-    ```python
-        elif model_id == [Your_Team_ID]:
-            # define your model and load the checkpoint
-    ```
-   - Note: Please set the correct data_range, either 255.0 or 1.0
-5. Send us the command to download your code, e.g, 
-   - `git clone [Your repository link]`
-   - We will do the following steps to add your code and model checkpoint to the repository.
-   This repository shows how to add noise to synthesize the noisy image. It also shows how you can save an image.
+Place all three files (folder link: https://drive.google.com/file/d/1MMtyxPYCvhxpE5dnpHfhDIQ-3OtCkXOh/view?usp=drive_link ) in `model_zoo/team07_I2WM_JNU`:
 
+| File            | Link                                                         |
+| --------------- | ------------------------------------------------------------ |
+| `restormer.pth` | [Download](https://drive.google.com/file/d/1MMtyxPYCvhxpE5dnpHfhDIQ-3OtCkXOh/view?usp=drive_link) |
+
+
+
+## Run
+
+```bash
+# e.g.
+CUDA_VISIBLE_DEVICES=7 python test_demo02.py --model_id 7 \
+--data_dir datasets \
+--save_dir results
+
+# NVDIA H200推理大约需要0.5~1h左右
+```
+
+
+
+## Notice
+
+请注意，该代码对 [test_demo.py](test_demo.py) 的forward函数（第92行）做了专门的修改。由于Restormer推理大尺寸会爆显存，因此在这里进行了适用性修改。如果长边小于2000=>直接推理；否则，tile = min(2000, h, w)，裁剪成重叠的tile进行推理， 重合度为80%tile。
