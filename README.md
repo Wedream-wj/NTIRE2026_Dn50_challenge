@@ -29,7 +29,7 @@ pip install -r requirements.txt
 
 ## Download Weights
 
-Place all three files (folder link: https://drive.google.com/file/d/1MMtyxPYCvhxpE5dnpHfhDIQ-3OtCkXOh/view?usp=drive_link ) in `model_zoo/team07_I2WM_JNU`:
+Place all files (folder link: https://drive.google.com/file/d/1MMtyxPYCvhxpE5dnpHfhDIQ-3OtCkXOh/view?usp=drive_link ) in `model_zoo/team07_I2WM_JNU`:
 
 | File            | Link                                                         |
 | --------------- | ------------------------------------------------------------ |
